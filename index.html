@@ -6,6 +6,7 @@
     <!-- daisy ui -->
      <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+   
 
     <title>Green Earth</title>
 </head>
@@ -55,6 +56,70 @@
       </div>
       <img src="./assets/hero-leaf2.png" class="">
     </section>
+
+
+
+    <!-- card section  -->
+
+<section class="bg-[#DCFCE7] grid grid-cols-12 gap-4 p-4">
+  <!-- Sidebar -->
+  <div class="col-span-2">
+    
+      <h1 class="font-bold">Categories</h1>
+      <ul id="categorescontainer" class="space-y-3 ">
+        <li  ></li>
+      </ul>
+    
+  </div>
+
+  <!-- Middle content (cards) -->
+  <div  class="col-span-8 p-4"><!-- 🔹 removed bg-blue-50 -->
+    <div id="cardContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Card 1 -->
+      <!-- <div class="max-w-sm mx-auto rounded-2xl shadow-lg border p-4 bg-white">
+        <div class="w-full h-40 bg-gray-100 rounded-md mb-4">
+          <img src="" alt="">
+        </div>
+        <h2 class="text-lg font-semibold text-gray-800">Mango Tree</h2>
+        <p class="text-sm text-gray-600 mt-1">
+          A fast-growing tropical tree that produces delicious, juicy mangoes during summer. Its dense green
+        </p>
+        <div class="flex items-center justify-between mt-3">
+          <span class="px-3 py-1 text-xs font-medium rounded-full bg-green-100 text-green-700">
+            Fruit Tree
+          </span>
+          <span class="text-gray-800 font-semibold">৳500</span>
+        </div>
+        <button class="w-full mt-4 bg-green-700 text-white py-2 rounded-full hover:bg-green-800 transition">
+          Add to Cart
+        </button>
+      </div> -->
+
+    </div>
+  </div>
+
+  <!-- Cart -->
+  <div class="col-span-2 bg-green-500">cart</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- campaign seciotn -->
      <section class="space-y-3 text-center my-6 p-4">
@@ -112,4 +177,23 @@
         </form>
         </div>
        </section>
+
+
+
+
+<!-- Open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+<dialog id="my_modal_1" class="modal">
+  <div class="modal-box">
+    <div id="detailscontainer"></div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+       <script src="main.js"></script>
 </body>            
