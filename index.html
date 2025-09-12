@@ -6,6 +6,8 @@
     <!-- daisy ui -->
      <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- font awosem -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    
 
     <title>Green Earth</title>
@@ -60,8 +62,8 @@
 
 
     <!-- card section  -->
-
-<section class="bg-[#DCFCE7] grid grid-cols-12 gap-4 p-4">
+<h1 class="text-center font-bold bg-[#DCFCE7] text-2xl py-4">Choose Your Trees</h1>
+<section id="main" class="bg-[#DCFCE7] grid grid-cols-1 md:grid-cols-12 gap-4 p-4">
   <!-- Sidebar -->
   <div class="col-span-2">
     
@@ -100,7 +102,15 @@
   </div>
 
   <!-- Cart -->
-  <div class="col-span-2 bg-green-500">cart</div>
+  <div class="col-span-2 ">
+    <div class="font-bold">Your Cart</div>
+
+    <div id="cartcontainer">
+      
+    </div>
+
+    <div id="totalprice" class="text-right font-bold">Total: $0</div>
+  </div>
 </section>
 
 
@@ -185,7 +195,11 @@
 <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
 <dialog id="my_modal_1" class="modal">
   <div class="modal-box">
-    <div id="detailscontainer"></div>
+    <div id="detailscontainer">
+
+        
+
+    </div>
     <div class="modal-action">
       <form method="dialog">
         <!-- if there is a button in form, it will close the modal -->

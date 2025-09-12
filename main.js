@@ -6,7 +6,57 @@ fetch("https://openapi.programming-hero.com/api/categories")
 
 
 
-// load cards 
+let carts = []
+
+const main = document.getElementById("main")
+main.addEventListener("click",(e) => {
+  if(e.target.innerText === "Add to Cart"){
+   const title = e.target.parentNode.children[1].innerText
+   const price = e.target.parentNode.children[3].children[1].innerText
+   const numericPrice = parseFloat(price.replace(/[^0-9.]/g, ""))
+   carts.push({
+     title:title,
+     price:numericPrice
+    })
+    alert("this item added to the cart")
+   displayCart(carts)
+  }
+})
+
+function displayCart(carts){
+  let total = 0
+  const cartcontainer = document.getElementById("cartcontainer")
+  cartcontainer.innerHTML=""
+  carts.forEach(cart => {
+    total += cart.price
+    console.log(total)
+    cartcontainer.innerHTML +=`
+    <div id="cartcon" class="bg-white p-2 mt-2 flex justify-between items-center rounded-lg">
+      <div>
+        <h1 class="font-bold">${cart.title}</h1>
+        <p>${cart.price}</p>
+      </div>
+      <div ><i onclick="deleteCart('${cart.title}')"  class="fa-solid fa-square-xmark text-3xl"></i></div>
+    </div>
+    
+    `
+    document.getElementById("totalprice").innerText = `Total: $${total}`
+  });
+}
+
+function deleteCart(title){
+  filtercarts = carts.filter((cart) => cart.title !== title )
+  carts = filtercarts
+  displayCart(carts)
+}
+
+
+
+
+
+
+
+
 
 function loadCard(id){
 
@@ -19,13 +69,13 @@ function loadCard(id){
     }
       )  
 }
-//load detail api
+
 function loaddetali(id){
     fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
     .then(res => res.json())
     .then(details => displaydetailapi(details.plants))
 }
-//displaly deatil api
+
 function displaydetailapi(plants){
   console.log(plants.name)
   const detailscontainer = document.getElementById("detailscontainer")
@@ -39,7 +89,7 @@ function displaydetailapi(plants){
   const modal = document.getElementById("my_modal_1").showModal()
 }
 
-//display cards
+
 function displayCard (cards) {
     const cardcontainer = document.getElementById("cardContainer")
     cardcontainer.innerHTML=""
@@ -58,7 +108,7 @@ function displayCard (cards) {
           </span>
           <span class="text-gray-800 font-semibold">৳${card.price}</span>
         </div>
-        <button class="w-full mt-4 bg-green-700 text-white py-2 rounded-full hover:bg-green-800 transition">
+        <button  class="w-full mt-4 bg-green-700 text-white py-2 rounded-full hover:bg-green-800 transition">
           Add to Cart
         </button>
       </div>
@@ -73,7 +123,7 @@ function loadCategories(categoriesarry){
     //console.log(categoriesarry.categories)
     const categories =  categoriesarry.categories
     for(let categorie of categories){
-        console.log(categorie.id)
+        // console.log(categorie.id)
         const categorescontainer = document.getElementById("categorescontainer")//parent element
         const li = document.createElement("li")//new list element
         
