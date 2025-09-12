@@ -1,6 +1,9 @@
 fetch("https://openapi.programming-hero.com/api/categories")
 .then(res => res.json())
-.then(data => loadCategories(data))
+.then(data => {
+  
+  loadCategories(data)
+})
 
 
 
@@ -51,7 +54,17 @@ function deleteCart(title){
 }
 
 
+function handlespinner (status){
+  if(status){
+    document.getElementById("spinner").classList.remove("hidden")
+    document.getElementById("cardContainer").classList.add("hidden")
 
+  }
+  else{
+    document.getElementById("spinner").classList.add("hidden")
+    document.getElementById("cardContainer").classList.remove("hidden")
+  }
+}
 
 
 
@@ -59,13 +72,14 @@ function deleteCart(title){
 
 
 function loadCard(id){
-
+    handlespinner(true)
     //fetching cards 
     fetch(`https://openapi.programming-hero.com/api/category/${id}`)
     .then(res => res.json())
     .then(cardarr => {
 
         displayCard(cardarr.plants)
+        handlespinner(false)
     }
       )  
 }
@@ -91,6 +105,7 @@ function displaydetailapi(plants){
 
 
 function displayCard (cards) {
+  
     const cardcontainer = document.getElementById("cardContainer")
     cardcontainer.innerHTML=""
     for(card of cards){
@@ -116,20 +131,40 @@ function displayCard (cards) {
         `
         cardcontainer.append(div)
     }
+    
 }
 
 
 function loadCategories(categoriesarry){
-    //console.log(categoriesarry.categories)
-    const categories =  categoriesarry.categories
+    const categories = categoriesarry.categories
+    const categorescontainer = document.getElementById("categorescontainer")
+    categorescontainer.innerHTML = "" // ✅ (NEW) clear before re-render
+
     for(let categorie of categories){
-        // console.log(categorie.id)
-        const categorescontainer = document.getElementById("categorescontainer")//parent element
-        const li = document.createElement("li")//new list element
+        const li = document.createElement("li")
+
         
-        li.innerHTML=`
-        <li  onclick="loadCard(${categorie.id})" class="hover:bg-[#166534] hover:text-white py-2 px-1 rounded  ">${categorie.category_name}</li>
-        `
+        li.className = "category-item hover:bg-[#166534] hover:text-white py-2 px-1 rounded cursor-pointer"
+
+        
+        li.setAttribute("data-id", categorie.id) 
+
+        li.innerText = categorie.category_name
+
+       
+        li.addEventListener("click", () => {
+            
+            document.querySelectorAll(".category-item").forEach(item => {
+                item.classList.remove("bg-[#166534]", "text-white")
+            })
+
+           
+            li.classList.add("bg-[#166534]", "text-white")
+
+           
+            loadCard(categorie.id)
+        })
+
         categorescontainer.append(li)
     }
 }
